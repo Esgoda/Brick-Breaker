@@ -4,14 +4,14 @@ import setUp.panels.Panel;
 
 import javax.swing.*;
 
-public class mainFrameCreator {
+public class MainFrameCreator {
     private JFrame container;
     private String title;
     private int x, y, width, height;
 
-    public mainFrameCreator(){}
+    public MainFrameCreator(){}
 
-    public mainFrameCreator(String title, int x, int y, int width, int height) {
+    public MainFrameCreator(String title, int x, int y, int width, int height) {
         this.title = title;
         this.x = x;
         this.y = y;

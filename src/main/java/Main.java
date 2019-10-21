@@ -1,10 +1,10 @@
-import setUp.mainFrameCreator;
-import setUp.panels.gamePanel;
+import setUp.MainFrameCreator;
+import setUp.panels.GamePanel;
 
-public class main {
+public class Main {
     public static void main(String[] args) {
-        mainFrameCreator gameContainer = new mainFrameCreator("Brick Breaker!", 10, 10, 700, 500);
-        gameContainer.addPanel(new gamePanel());
+        GamePlay game = new GamePlay();
+        game.runGame();
     }
 }
 
