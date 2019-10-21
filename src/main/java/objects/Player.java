@@ -3,7 +3,7 @@ package objects;
 import java.awt.*;
 
 public class Player {
-    private int xPlayerPos; //310
+    private int xPlayerPos;
 
     public Player(){}
 
@@ -11,7 +11,7 @@ public class Player {
         this.xPlayerPos = xPlayerPos;
     }
 
-    public void draw(Graphics g) {
+    public void paint(Graphics g) {
         g.setColor(Color.green);
         g.fillRect(this.xPlayerPos, 550, 100, 8);
     }

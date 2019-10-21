@@ -5,8 +5,7 @@ import objects.Player;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
 public class GamePanel extends Panel {
     private Player player;
@@ -23,19 +22,20 @@ public class GamePanel extends Panel {
         timer = new Timer(delay, this);
     }
 
+    @Override
     public void paint(Graphics g) {
         //background
-        g.setColor(Color.black);
+        g.setColor(Color.darkGray);
         g.fillRect(1, 1, 692, 592);
 
         //border
-        g.setColor(Color.yellow);
+        g.setColor(Color.orange);
         g.fillRect(0, 0, 3, 592);
-        g.fillRect(0, 0, 692, 3);
-        g.fillRect(691, 0, 3, 592);
+        g.fillRect(0, 0, 690, 3);
+        g.fillRect(690, 0, 3, 592);
 
-        getPlayer().draw(g);
-        getBall().draw(g);
+        getPlayer().paint(g);
+        getBall().paint(g);
 
         g.dispose();
     }
@@ -45,7 +45,6 @@ public class GamePanel extends Panel {
         timer.start();
         repaint();
     }
-
 
     @Override
     public void keyPressed(KeyEvent e) {

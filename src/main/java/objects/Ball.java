@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Ball {
     private int xBallPos, yBallPos, xBallDir, yBallDir;
-    //120, 350, -1, -2
+
     public Ball() {}
 
     public Ball(int xBallPos, int yBallPos, int xBallDir, int yBallDir) {
@@ -14,7 +14,7 @@ public class Ball {
         this.yBallDir = yBallDir;
     }
 
-    public void draw(Graphics g) {
+    public void paint(Graphics g) {
         g.setColor(Color.pink);
         g.fillOval(this.getxBallPos(), this.yBallPos, 20, 20);
     }

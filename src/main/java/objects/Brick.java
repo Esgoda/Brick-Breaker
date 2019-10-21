@@ -7,8 +7,10 @@ public class Brick {
 
     public Brick(){}
 
-    public void draw(Graphics g) {
+    public Brick(int howMany) {}
 
+    public void paint(Graphics g) {
+        g.setColor(Color.cyan);
     }
 
     public boolean isHitOrNot() {
