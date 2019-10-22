@@ -18,8 +18,8 @@ public class Brick extends GameObject{
         g.fillRect(x, y, getWidth(), getHeight());
 
         g.setStroke(new BasicStroke(3));
-        g.setColor(Color.DARK_GRAY);
-        g.drawRect(x, y, getWidth(), getHeight());
+        g.setColor(Color.BLACK);
+        g.drawRoundRect(x, y, getWidth(), getHeight(), 5, 5);
     }
 
     public int getIsHitOrNot() {

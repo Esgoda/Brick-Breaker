@@ -12,12 +12,13 @@ import java.awt.event.*;
 public class GamePanel extends Panel implements KeyListener, ActionListener {
     private CollisionLogic ballPlayerCollision = new CollisionLogic();
     private BrickWallGenerator wallGenerator = new BrickWallGenerator(3, 7);
+    private Image backgroundImage;
     private boolean gameStart = false, gameEnd = false;
     private Timer timer;
     private Player player;
     private Ball ball;
 
-    public GamePanel(Player player, Ball ball, int delay){
+    public GamePanel(Player player, Ball ball, int delay) {
         this.player = player;
         this.ball = ball;
 
@@ -27,21 +28,15 @@ public class GamePanel extends Panel implements KeyListener, ActionListener {
         setFocusTraversalKeysEnabled(false);
 
         timer = new Timer(delay, this);
+        backgroundImage = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("/images/game_background.png"));
     }
 
     @Override
     public void paint(Graphics g) {
         //background
-        g.setColor(Color.darkGray);
-        g.fillRect(1, 1, 692, 592);
+        g.drawImage(backgroundImage, 0, 0, null);
 
         wallGenerator.drawWall((Graphics2D)g);
-
-        //border
-        g.setColor(Color.orange);
-        g.fillRect(0, 0, 3, 592);
-        g.fillRect(0, 0, 690, 3);
-        g.fillRect(690, 0, 3, 592);
 
         getPlayer().paint(g);
         getBall().paint(g);
