@@ -2,6 +2,7 @@ package setUp.panels;
 
 import objects.Ball;
 import objects.Player;
+import setUp.logic.BrickWallGenerator;
 import setUp.logic.CollisionLogic;
 
 import javax.swing.*;
@@ -10,6 +11,7 @@ import java.awt.event.*;
 
 public class GamePanel extends Panel implements KeyListener, ActionListener {
     private CollisionLogic ballPlayerCollision = new CollisionLogic();
+    private BrickWallGenerator wallGenerator = new BrickWallGenerator(3, 7);
     private boolean gameStart = false, gameEnd = false;
     private Timer timer;
     private Player player;
@@ -23,6 +25,7 @@ public class GamePanel extends Panel implements KeyListener, ActionListener {
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
+
         timer = new Timer(delay, this);
     }
 
@@ -31,6 +34,8 @@ public class GamePanel extends Panel implements KeyListener, ActionListener {
         //background
         g.setColor(Color.darkGray);
         g.fillRect(1, 1, 692, 592);
+
+        wallGenerator.drawWall((Graphics2D)g);
 
         //border
         g.setColor(Color.orange);
