@@ -7,7 +7,7 @@ public class Ball extends GameObject {
 
     public Ball() {
         this.xBallPos = 350;
-        this.yBallPos = 120;
+        this.yBallPos = 400;
         this.xBallDir = -1;
         this.yBallDir = -2;
     }
@@ -22,7 +22,7 @@ public class Ball extends GameObject {
     @Override
     public void paint(Graphics g) {
         g.setColor(Color.pink);
-        g.fillOval(this.getxBallPos(), this.yBallPos, 20, 20);
+        g.fillOval(getxBallPos(), getyBallPos(), 20, 20);
     }
 
     public void ballMovement(boolean gameStart) {

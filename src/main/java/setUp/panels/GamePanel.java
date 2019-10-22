@@ -2,16 +2,18 @@ package setUp.panels;
 
 import objects.Ball;
 import objects.Player;
+import setUp.logic.CollisionLogic;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
 public class GamePanel extends Panel implements KeyListener, ActionListener {
-    private boolean gameStart, gameEnd;
+    private CollisionLogic ballPlayerCollision = new CollisionLogic();
+    private boolean gameStart = false, gameEnd = false;
+    private Timer timer;
     private Player player;
     private Ball ball;
-    private Timer timer;
 
     public GamePanel(Player player, Ball ball, int delay){
         this.player = player;
@@ -45,6 +47,7 @@ public class GamePanel extends Panel implements KeyListener, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         timer.start();
+        ballPlayerCollision.ballToPaddleCollisionLogic(getBall(), getPlayer());
         ball.ballMovement(gameStart);
         repaint();
     }
