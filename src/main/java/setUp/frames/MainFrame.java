@@ -1,17 +1,17 @@
-package setUp;
+package setUp.frames;
 
 import setUp.panels.Panel;
 
 import javax.swing.*;
 
-public class mainFrameCreator {
+public class MainFrame {
     private JFrame container;
     private String title;
     private int x, y, width, height;
 
-    public mainFrameCreator(){}
+    public MainFrame(){}
 
-    public mainFrameCreator(String title, int x, int y, int width, int height) {
+    public MainFrame(String title, int x, int y, int width, int height) {
         this.title = title;
         this.x = x;
         this.y = y;

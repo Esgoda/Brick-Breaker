@@ -1,27 +1,8 @@
 package setUp.panels;
 
 import javax.swing.*;
-import java.awt.event.*;
+import java.awt.*;
 
-public class Panel extends JPanel implements KeyListener, ActionListener {
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
+public abstract class Panel extends JPanel {
+    public void paint(Graphics g){}
 }
