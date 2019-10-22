@@ -12,6 +12,7 @@ public class Brick extends GameObject{
         this.height = height;
     }
 
+    @Override
     public void paint(Graphics2D g, int x, int y) {
         g.setColor(Color.cyan);
         g.fillRect(x, y, getWidth(), getHeight());
