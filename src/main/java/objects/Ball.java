@@ -2,10 +2,15 @@ package objects;
 
 import java.awt.*;
 
-public class Ball {
+public class Ball extends GameObject {
     private int xBallPos, yBallPos, xBallDir, yBallDir;
 
-    public Ball() {}
+    public Ball() {
+        this.xBallPos = 350;
+        this.yBallPos = 120;
+        this.xBallDir = -1;
+        this.yBallDir = -2;
+    }
 
     public Ball(int xBallPos, int yBallPos, int xBallDir, int yBallDir) {
         this.xBallPos = xBallPos;
@@ -14,9 +19,31 @@ public class Ball {
         this.yBallDir = yBallDir;
     }
 
+    @Override
     public void paint(Graphics g) {
         g.setColor(Color.pink);
         g.fillOval(this.getxBallPos(), this.yBallPos, 20, 20);
+    }
+
+    public void ballMovement(boolean gameStart) {
+        if(gameStart) {
+            setxBallPos(getxBallPos() + getxBallDir());
+            setyBallPos(getyBallPos() + getyBallDir());
+
+            ballDirection();
+        }
+    }
+
+    private void ballDirection() {
+        if(getxBallPos() < 0) {
+            setxBallDir(-getxBallDir());
+        }
+        if(getyBallPos() < 0) {
+            setyBallDir(-getyBallDir());
+        }
+        if(getxBallPos() > 670) {
+            setxBallDir(-getxBallDir());
+        }
     }
 
     public int getxBallPos() {

@@ -2,7 +2,7 @@ package objects;
 
 import java.awt.*;
 
-public class Player {
+public class Player extends GameObject{
     private int xPlayerPos;
 
     public Player(){}
@@ -11,6 +11,7 @@ public class Player {
         this.xPlayerPos = xPlayerPos;
     }
 
+    @Override
     public void paint(Graphics g) {
         g.setColor(Color.green);
         g.fillRect(this.xPlayerPos, 550, 100, 8);

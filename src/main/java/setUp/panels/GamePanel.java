@@ -7,18 +7,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class GamePanel extends Panel {
+public class GamePanel extends Panel implements KeyListener, ActionListener {
+    private boolean gameStart, gameEnd;
     private Player player;
     private Ball ball;
     private Timer timer;
 
     public GamePanel(Player player, Ball ball, int delay){
-        addKeyListener(this);
-        setFocusable(true);
-        setFocusTraversalKeysEnabled(false);
         this.player = player;
         this.ball = ball;
 
+        //set the listener in the main game panel
+        addKeyListener(this);
+        setFocusable(true);
+        setFocusTraversalKeysEnabled(false);
         timer = new Timer(delay, this);
     }
 
@@ -43,11 +45,13 @@ public class GamePanel extends Panel {
     @Override
     public void actionPerformed(ActionEvent e) {
         timer.start();
+        ball.ballMovement(gameStart);
         repaint();
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
+        gameStart = true;
         if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
             if(player.getxPlayerPos() >= 600) {
                 player.setxPlayerPos(600);
@@ -64,6 +68,29 @@ public class GamePanel extends Panel {
             }
         }
     }
+
+    @Override
+    public void keyReleased(KeyEvent e) {}
+
+    @Override
+    public void keyTyped(KeyEvent e) {}
+
+    public boolean isGameStart() {
+        return gameStart;
+    }
+
+    public void setGameStart(boolean gameStart) {
+        this.gameStart = gameStart;
+    }
+
+    public boolean isGameEnd() {
+        return gameEnd;
+    }
+
+    public void setGameEnd(boolean gameEnd) {
+        this.gameEnd = gameEnd;
+    }
+
 
     public Player getPlayer() {
         return player;

@@ -1,9 +1,8 @@
-import setUp.MainFrameCreator;
-import setUp.panels.GamePanel;
+import setUp.GameInit;
 
 public class Main {
     public static void main(String[] args) {
-        GamePlay game = new GamePlay();
+        GameInit game = new GameInit();
         game.runGame();
     }
 }

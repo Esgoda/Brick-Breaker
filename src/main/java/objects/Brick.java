@@ -2,13 +2,14 @@ package objects;
 
 import java.awt.*;
 
-public class Brick {
+public class Brick extends GameObject{
     private boolean hitOrNot = false;
 
     public Brick(){}
 
     public Brick(int howMany) {}
 
+    @Override
     public void paint(Graphics g) {
         g.setColor(Color.cyan);
     }
