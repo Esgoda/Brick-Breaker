@@ -2,18 +2,23 @@ package setUp.panels;
 
 import objects.Ball;
 import objects.Player;
+import setUp.logic.BrickWallGenerator;
+import setUp.logic.CollisionLogic;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
 public class GamePanel extends Panel implements KeyListener, ActionListener {
-    private boolean gameStart, gameEnd;
+    private CollisionLogic collisionLogic = new CollisionLogic();
+    private BrickWallGenerator wallGenerator = new BrickWallGenerator(3, 7);
+    private Image backgroundImage;
+    private boolean gameStart = false, gameEnd = false;
+    private Timer timer;
     private Player player;
     private Ball ball;
-    private Timer timer;
 
-    public GamePanel(Player player, Ball ball, int delay){
+    public GamePanel(Player player, Ball ball, int delay) {
         this.player = player;
         this.ball = ball;
 
@@ -21,20 +26,17 @@ public class GamePanel extends Panel implements KeyListener, ActionListener {
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
+
         timer = new Timer(delay, this);
+        backgroundImage = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("/images/game_background.png"));
     }
 
     @Override
     public void paint(Graphics g) {
         //background
-        g.setColor(Color.darkGray);
-        g.fillRect(1, 1, 692, 592);
+        g.drawImage(backgroundImage, 0, 0, null);
 
-        //border
-        g.setColor(Color.orange);
-        g.fillRect(0, 0, 3, 592);
-        g.fillRect(0, 0, 690, 3);
-        g.fillRect(690, 0, 3, 592);
+        wallGenerator.drawWall((Graphics2D)g);
 
         getPlayer().paint(g);
         getBall().paint(g);
@@ -45,7 +47,11 @@ public class GamePanel extends Panel implements KeyListener, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         timer.start();
-        ball.ballMovement(gameStart);
+        collisionLogic.ballToPaddleCollisionLogic(getBall(), getPlayer());
+        if(gameStart) {
+            ball.ballMovement();
+            collisionLogic.ballToBrickWallCollisionLogic(getBall(), wallGenerator);
+        }
         repaint();
     }
 
@@ -90,7 +96,6 @@ public class GamePanel extends Panel implements KeyListener, ActionListener {
     public void setGameEnd(boolean gameEnd) {
         this.gameEnd = gameEnd;
     }
-
 
     public Player getPlayer() {
         return player;
