@@ -1,76 +1,74 @@
 package setUp.logic;
 
-import objects.Brick;
-
 import java.awt.*;
 
 public class BrickWallGenerator {
-    private Brick brick;
-    private int[][] wall;
-    private int width;
-    private int height;
+    private int[][] brickWall;
+    private int totalBricks;
+    private int brickWidth;
+    private int brickHeight;
 
     public BrickWallGenerator(){}
 
     //TODO make parameter single int with 'HowManyBricks' and derive row and col
     public BrickWallGenerator(int row, int col) {
-        this.width = 540/col;
-        this.height = 150/row;
+        this.brickWidth = 540/col;
+        this.brickHeight = 150/row;
+        this.totalBricks = 21;
 
-        wall = new int[row][col];
-        brick = new Brick(width, height);
+        brickWall = new int[row][col];
+        generateBrickWall();
+    }
+
+    private void generateBrickWall() {
+        for(int i = 0; i < brickWall.length; i++) {
+            for(int j = 0; j < brickWall[0].length; j++) {
+                brickWall[i][j] = 1;
+            }
+        }
+    }
+
+    private void drawBrick(Graphics2D g, int x, int y) {
+        g.setColor(Color.cyan);
+        g.fillRect(x, y, getBrickWidth(), getBrickHeight());
+
+        g.setStroke(new BasicStroke(3));
+        g.setColor(Color.BLACK);
+        g.drawRoundRect(x, y, getBrickWidth(), getBrickHeight(), 5, 5);
     }
 
     public void drawWall(Graphics2D g) {
-        generateBrickWall();
-        for(int i = 0; i < wall.length; i++) {
-            for (int j = 0; j < wall[0].length; j++) {
-                if(wall[i][j] > 0) {
-                    brick.paint(g, (j * getWidth() + 80), (i * getHeight() + 50));
+        for(int i = 0; i < brickWall.length; i++) {
+            for (int j = 0; j < brickWall[0].length; j++) {
+                if(brickWall[i][j] > 0) {
+                    drawBrick(g, (j * getBrickWidth() + 80), (i * getBrickHeight() + 50));
                 }
             }
         }
     }
 
-    private void generateBrickWall() {
-        for(int i = 0; i < wall.length; i++) {
-            for(int j = 0; j < wall[0].length; j++) {
-                wall[i][j] = brick.getIsHitOrNot();
-            }
-        }
+    public void updateWall(int value, int row, int col) {
+        brickWall[row][col] = value;
     }
 
-    public int[][] getWall() {
-        return wall;
+    public int[][] getBrickWall() {
+        return brickWall;
     }
 
-    public void setWall(int[][] wall) {
-        this.wall = wall;
+    public int getTotalBricks() {
+        return totalBricks;
     }
 
-    public Brick getBrick() {
-        return brick;
-    }
-
-    public void setBrick(Brick brick) {
-        this.brick = brick;
+    public void setTotalBricks(int totalBricks) {
+        this.totalBricks = totalBricks;
     }
 
 
-    public int getWidth() {
-        return width;
+    public int getBrickWidth() {
+        return brickWidth;
     }
 
-    public void setWidth(int width) {
-        this.width = width;
+    public int getBrickHeight() {
+        return brickHeight;
     }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
 }

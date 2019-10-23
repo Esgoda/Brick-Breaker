@@ -25,13 +25,11 @@ public class Ball extends GameObject {
         g.fillOval(getxBallPos(), getyBallPos(), 20, 20);
     }
 
-    public void ballMovement(boolean gameStart) {
-        if(gameStart) {
-            setxBallPos(getxBallPos() + getxBallDir());
-            setyBallPos(getyBallPos() + getyBallDir());
+    public void ballMovement() {
+        setxBallPos(getxBallPos() + getxBallDir());
+        setyBallPos(getyBallPos() + getyBallDir());
 
-            ballDirection();
-        }
+        ballDirection();
     }
 
     private void ballDirection() {

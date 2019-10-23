@@ -10,7 +10,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class GamePanel extends Panel implements KeyListener, ActionListener {
-    private CollisionLogic ballPlayerCollision = new CollisionLogic();
+    private CollisionLogic collisionLogic = new CollisionLogic();
     private BrickWallGenerator wallGenerator = new BrickWallGenerator(3, 7);
     private Image backgroundImage;
     private boolean gameStart = false, gameEnd = false;
@@ -47,8 +47,11 @@ public class GamePanel extends Panel implements KeyListener, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         timer.start();
-        ballPlayerCollision.ballToPaddleCollisionLogic(getBall(), getPlayer());
-        ball.ballMovement(gameStart);
+        collisionLogic.ballToPaddleCollisionLogic(getBall(), getPlayer());
+        if(gameStart) {
+            ball.ballMovement();
+            collisionLogic.ballToBrickWallCollisionLogic(getBall(), wallGenerator);
+        }
         repaint();
     }
 
@@ -93,7 +96,6 @@ public class GamePanel extends Panel implements KeyListener, ActionListener {
     public void setGameEnd(boolean gameEnd) {
         this.gameEnd = gameEnd;
     }
-
 
     public Player getPlayer() {
         return player;
