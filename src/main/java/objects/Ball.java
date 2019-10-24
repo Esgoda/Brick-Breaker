@@ -3,13 +3,19 @@ package objects;
 import java.awt.*;
 
 public class Ball extends GameObject {
+    private static final int X_START_POS = 250;
+    private static final int Y_START_POS = 400;
+    private static final int X_START_DIR = -1;
+    private static final int Y_START_DIR = -2;
+    private static final int MOVE_BY = 10;
+
     private int xBallPos, yBallPos, xBallDir, yBallDir;
 
     public Ball() {
-        this.xBallPos = 350;
-        this.yBallPos = 400;
-        this.xBallDir = -1;
-        this.yBallDir = -2;
+        this.xBallPos = X_START_POS;
+        this.yBallPos = Y_START_POS;
+        this.xBallDir = X_START_DIR;
+        this.yBallDir = Y_START_DIR;
     }
 
     public Ball(int xBallPos, int yBallPos, int xBallDir, int yBallDir) {

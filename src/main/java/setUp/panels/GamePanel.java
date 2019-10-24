@@ -13,7 +13,8 @@ public class GamePanel extends Panel implements KeyListener, ActionListener {
     private CollisionLogic collisionLogic = new CollisionLogic();
     private BrickWallGenerator wallGenerator = new BrickWallGenerator(3, 7);
     private Image backgroundImage;
-    private boolean gameStart = false, gameEnd = false;
+    private boolean gameStart;
+    private int score;
     private Timer timer;
     private Player player;
     private Ball ball;
@@ -21,6 +22,8 @@ public class GamePanel extends Panel implements KeyListener, ActionListener {
     public GamePanel(Player player, Ball ball, int delay) {
         this.player = player;
         this.ball = ball;
+        this.score = 0;
+        this.gameStart = false;
 
         //set the listener in the main game panel
         addKeyListener(this);
@@ -38,16 +41,37 @@ public class GamePanel extends Panel implements KeyListener, ActionListener {
 
         wallGenerator.drawWall((Graphics2D)g);
 
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("serif", Font.BOLD, 20));
+        g.drawString("SCORE: " + score, 570, 30);
+
+        endGameListener(g);
+
         getPlayer().paint(g);
         getBall().paint(g);
 
         g.dispose();
     }
 
+    private void endGameListener(Graphics g) {
+        if (ball.getyBallPos() > 590) {
+            g.setColor(Color.RED);
+            g.setFont(new Font("serif", Font.BOLD, 30));
+            g.drawString("GAME OVER", 250, 300);
+
+            g.setFont(new Font("serif", Font.BOLD, 30));
+            g.drawString("Score: " + score, 290, 350);
+
+            g.setFont(new Font("serif", Font.BOLD, 20));
+            g.drawString("Press Enter to restart", 250, 400);
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         timer.start();
         collisionLogic.ballToPaddleCollisionLogic(getBall(), getPlayer());
+        score = collisionLogic.getScore();
         if(gameStart) {
             ball.ballMovement();
             collisionLogic.ballToBrickWallCollisionLogic(getBall(), wallGenerator);
@@ -73,6 +97,21 @@ public class GamePanel extends Panel implements KeyListener, ActionListener {
                 player.moveLeft();
             }
         }
+
+        if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+            restartGame();
+            gameStart = true;
+        }
+    }
+
+    private void restartGame() {
+        ball = new Ball();
+        collisionLogic.setScore(0);
+        player = new Player(310);
+        wallGenerator = new BrickWallGenerator(3, 7);
+        timer.restart();
+
+        repaint();
     }
 
     @Override
@@ -87,14 +126,6 @@ public class GamePanel extends Panel implements KeyListener, ActionListener {
 
     public void setGameStart(boolean gameStart) {
         this.gameStart = gameStart;
-    }
-
-    public boolean isGameEnd() {
-        return gameEnd;
-    }
-
-    public void setGameEnd(boolean gameEnd) {
-        this.gameEnd = gameEnd;
     }
 
     public Player getPlayer() {

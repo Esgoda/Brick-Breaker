@@ -6,6 +6,7 @@ import objects.Player;
 import java.awt.*;
 
 public class CollisionLogic {
+    private int score = 0;
     public void ballToPaddleCollisionLogic(Ball ball, Player player) {
         Rectangle ballCollisionRect = new Rectangle(ball.getxBallPos(), ball.getyBallPos(), 20, 20);
         Rectangle playerCollisionRect = new Rectangle(player.getxPlayerPos(), 550, 100, 8);
@@ -30,9 +31,11 @@ public class CollisionLogic {
                     Rectangle ballCollisionRect =  new Rectangle(ball.getxBallPos(), ball.getyBallPos(), 20, 20);
 
                     if(ballCollisionRect.intersects(brickCollisionRect)) {
+                        setScore(getScore() + 5);
                         brickWall.updateWall(0, i, j);;
                         brickWall.setTotalBricks(brickWall.getTotalBricks() - 1);
 
+                        //TODO add a very small noise variable to the direction
                         if((ball.getxBallPos() + 19) <= brickCollisionRect.x || (ball.getxBallPos() + 1) >= (brickCollisionRect.x + brickCollisionRect.width)) {
                             ball.setxBallDir(-ball.getxBallDir());
                         } else {
@@ -43,5 +46,13 @@ public class CollisionLogic {
                 }
             }
         }
+    }
+
+    public int getScore() {
+        return this.score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 }
