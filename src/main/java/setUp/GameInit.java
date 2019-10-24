@@ -13,7 +13,6 @@ public class GameInit {
     private static final int DELAY = 8;
     private static final int PLAYER_START_POS = 310;
     private static final String TITLE = "Brick Breaker!";
-    private static final int TOTAL_BRICKS = 21;
 
     private Player player;
     private Ball ball;
