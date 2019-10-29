@@ -7,7 +7,6 @@ public class Ball extends GameObject {
     private static final int Y_START_POS = 400;
     private static final int X_START_DIR = -1;
     private static final int Y_START_DIR = -2;
-    private static final int MOVE_BY = 10;
 
     private int xBallPos, yBallPos, xBallDir, yBallDir;
 
@@ -16,13 +15,6 @@ public class Ball extends GameObject {
         this.yBallPos = Y_START_POS;
         this.xBallDir = X_START_DIR;
         this.yBallDir = Y_START_DIR;
-    }
-
-    public Ball(int xBallPos, int yBallPos, int xBallDir, int yBallDir) {
-        this.xBallPos = xBallPos;
-        this.yBallPos = yBallPos;
-        this.xBallDir = xBallDir;
-        this.yBallDir = yBallDir;
     }
 
     @Override
@@ -54,7 +46,7 @@ public class Ball extends GameObject {
         return xBallPos;
     }
 
-    public void setxBallPos(int xBallPos) {
+    private void setxBallPos(int xBallPos) {
         this.xBallPos = xBallPos;
     }
 
@@ -62,7 +54,7 @@ public class Ball extends GameObject {
         return yBallPos;
     }
 
-    public void setyBallPos(int yBallPos) {
+    private void setyBallPos(int yBallPos) {
         this.yBallPos = yBallPos;
     }
 

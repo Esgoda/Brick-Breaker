@@ -138,35 +138,15 @@ public class GamePanel extends Panel implements KeyListener, ActionListener {
     @Override
     public void keyTyped(KeyEvent e) {}
 
-    public boolean isGameStart() {
-        return gameStart;
-    }
-
-    public void setGameStart(boolean gameStart) {
-        this.gameStart = gameStart;
-    }
-
-    public Player getPlayer() {
+    private Player getPlayer() {
         return player;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
-    public Ball getBall() {
+    private Ball getBall() {
         return ball;
-    }
-
-    public void setBall(Ball ball) {
-        this.ball = ball;
     }
 
     public Timer getTimer() {
         return timer;
-    }
-
-    public void setTimer(Timer timer) {
-        this.timer = timer;
     }
 }

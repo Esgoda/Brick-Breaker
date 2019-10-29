@@ -8,9 +8,6 @@ public class BrickWallGenerator {
     private int brickWidth;
     private int brickHeight;
 
-    public BrickWallGenerator(){}
-
-    //TODO make parameter single int with 'HowManyBricks' and derive row and col
     public BrickWallGenerator(int row, int col) {
         this.brickWidth = 540/col;
         this.brickHeight = 150/row;
@@ -47,11 +44,11 @@ public class BrickWallGenerator {
         }
     }
 
-    public void updateWall(int value, int row, int col) {
+    void updateWall(int value, int row, int col) {
         brickWall[row][col] = value;
     }
 
-    public int[][] getBrickWall() {
+    int[][] getBrickWall() {
         return brickWall;
     }
 
@@ -59,16 +56,16 @@ public class BrickWallGenerator {
         return totalBricks;
     }
 
-    public void setTotalBricks(int totalBricks) {
+    void setTotalBricks(int totalBricks) {
         this.totalBricks = totalBricks;
     }
 
 
-    public int getBrickWidth() {
+    int getBrickWidth() {
         return brickWidth;
     }
 
-    public int getBrickHeight() {
+    int getBrickHeight() {
         return brickHeight;
     }
 }

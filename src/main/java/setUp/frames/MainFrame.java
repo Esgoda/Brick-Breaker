@@ -9,8 +9,6 @@ public class MainFrame {
     private String title;
     private int x, y, width, height;
 
-    public MainFrame(){}
-
     public MainFrame(String title, int x, int y, int width, int height) {
         this.title = title;
         this.x = x;
