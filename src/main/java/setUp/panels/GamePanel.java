@@ -46,6 +46,7 @@ public class GamePanel extends Panel implements KeyListener, ActionListener {
         g.drawString("SCORE: " + score, 570, 30);
 
         endGameListener(g);
+        winGameListener(g);
 
         getPlayer().paint(g);
         getBall().paint(g);
@@ -64,6 +65,23 @@ public class GamePanel extends Panel implements KeyListener, ActionListener {
 
             g.setFont(new Font("serif", Font.BOLD, 20));
             g.drawString("Press Enter to restart", 250, 400);
+        }
+    }
+
+    private void winGameListener(Graphics g) {
+        if(wallGenerator.getTotalBricks() <=0 ) {
+            g.setColor(Color.RED);
+            g.setFont(new Font("serif", Font.BOLD, 30));
+            g.drawString("WINNER", 260, 300);
+
+            g.setFont(new Font("serif", Font.BOLD, 30));
+            g.drawString("Score: " + score, 270, 350);
+
+            g.setFont(new Font("serif", Font.BOLD, 20));
+            g.drawString("Press Enter to restart", 250, 400);
+
+            ball.setxBallDir(0);
+            ball.setyBallDir(0);
         }
     }
 
