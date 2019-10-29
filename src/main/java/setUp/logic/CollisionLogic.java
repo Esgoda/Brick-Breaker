@@ -35,7 +35,6 @@ public class CollisionLogic {
                         brickWall.updateWall(0, i, j);;
                         brickWall.setTotalBricks(brickWall.getTotalBricks() - 1);
 
-                        //TODO add a very small noise variable to the direction
                         if((ball.getxBallPos() + 19) <= brickCollisionRect.x || (ball.getxBallPos() + 1) >= (brickCollisionRect.x + brickCollisionRect.width)) {
                             ball.setxBallDir(-ball.getxBallDir());
                         } else {

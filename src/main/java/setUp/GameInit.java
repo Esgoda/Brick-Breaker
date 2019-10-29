@@ -14,19 +14,11 @@ public class GameInit {
     private static final int PLAYER_START_POS = 310;
     private static final String TITLE = "Brick Breaker!";
 
-    private Player player;
-    private Ball ball;
-
     public GameInit(){}
 
-    public GameInit(Player player, Ball ball){
-        this.player = player;
-        this.ball = ball;
-    }
-
     public void runGame(){
-        player = new Player(PLAYER_START_POS);
-        ball = new Ball();
+        Player player = new Player(PLAYER_START_POS);
+        Ball ball = new Ball();
 
         MainFrame gameContainer = new MainFrame(TITLE, X, Y, WIDTH, HEIGHT);
         GamePanel screen = new GamePanel(player, ball, DELAY);
